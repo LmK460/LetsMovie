@@ -1,5 +1,7 @@
 # LetsMovie
 
+Requisitos: .NET 6
+
 Todas as rotinas de Banco farão os eventos de adicionar pontuação, troca de role e etc.
 
 
