@@ -1,5 +1,8 @@
 # LetsMovie
 
+# Atenção tive um problema de merge neste repositorio: Se possível considerar o REpositorio a seguir : https://github.com/LmK460/API-MOVIE.git
+
+
 Requisitos: .NET 6
 
 Todas as rotinas de Banco farão os eventos de adicionar pontuação, troca de role e etc.
