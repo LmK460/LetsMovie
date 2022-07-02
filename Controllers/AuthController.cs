@@ -4,22 +4,23 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    public class UserController: ControllerBase
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AuthController : ControllerBase
     {
+        public AuthService AuthService { get; }
 
-        public UserService UserService { get; }
-
-        public UserController(UserService userService)
+        public AuthController(AuthService AuthService)
         {
-            this.UserService = userService;
+            this.AuthService = AuthService;
         }
 
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] UserInsertDTO UserLoginDTO)
+        public async Task<IActionResult> Post([FromBody] UserLoginDTO UserLoginDTO)
         {
 
-            var result = await UserService.InsertUser(UserLoginDTO);
+            var result = await AuthService.Login(UserLoginDTO);
             if (result.Autenticated = true)
             {
                 var aux = AuthService.ValidateToken(result.AccessToken);
@@ -28,5 +29,7 @@ namespace API.Controllers
             }
             return BadRequest();
         }
+
+
     }
 }

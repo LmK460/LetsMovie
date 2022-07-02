@@ -1,3 +1,5 @@
+using API.Service;
+using Domain.Interfaces;
 using Infra.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,9 +11,24 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient(x => new ApiClientFactory
-                                        (builder.Configuration["TokenConfigurations:secureKey"],
-                                        builder.Configuration["TokenConfigurations:secureKey"])
+                                        (builder.Configuration["ApiConfigurations:AuthBaseUrl"])
+); ;
+builder.Services.AddTransient(x => new MovieApiClientFactory
+                                        (builder.Configuration["ApiConfigurations:MovieBaseUrl"],
+                                        builder.Configuration["ApiConfigurations:MovieApiKey"])
 );
+
+builder.Services.AddTransient<IDatabaseConnectionFactory>(x => new DatabaseConnectionFactory
+                                        (builder.Configuration.GetConnectionString("PostGreesConnection"))
+);
+
+
+
+
+builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<MovieService>();
+builder.Services.AddScoped<CommentService>();
+builder.Services.AddScoped<RattingService>();
 
 var app = builder.Build();
 
