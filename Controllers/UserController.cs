@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class UserController: ControllerBase
     {
 
@@ -20,10 +22,8 @@ namespace API.Controllers
         {
 
             var result = await UserService.InsertUser(UserLoginDTO);
-            if (result.Autenticated = true)
+            if (result = true)
             {
-                var aux = AuthService.ValidateToken(result.AccessToken);
-                Console.WriteLine(aux);
                 return Ok(result);
             }
             return BadRequest();

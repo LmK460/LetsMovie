@@ -29,6 +29,8 @@ builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<MovieService>();
 builder.Services.AddScoped<CommentService>();
 builder.Services.AddScoped<RattingService>();
+builder.Services.AddScoped<CommentService>();
+builder.Services.AddScoped<RattingService>();
 
 var app = builder.Build();
 

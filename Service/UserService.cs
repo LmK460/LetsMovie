@@ -1,5 +1,6 @@
 ﻿using API.Dto;
 using Domain.Entities;
+using Domain.Interfaces;
 using Infra.Configuration;
 using Npgsql;
 using System.Data;
@@ -12,12 +13,12 @@ namespace API.Service
         public IDatabaseConnectionFactory DatabaseConnectionFactory { get; }
 
 
-        public RattingService(IDatabaseConnectionFactory databaseConnectionFactory)
+        public UserService(IDatabaseConnectionFactory databaseConnectionFactory)
         {
             DatabaseConnectionFactory = databaseConnectionFactory;
         }
 
-        public async Task<Boolean> InserUser(UserInsertDTO userDto)
+        public async Task<Boolean> InsertUser(UserInsertDTO userDto)
         {
             using (var conn = await DatabaseConnectionFactory.GetConnectionFactoryAsync())
             {
@@ -47,3 +48,5 @@ namespace API.Service
 
             }
         }
+    }
+}
